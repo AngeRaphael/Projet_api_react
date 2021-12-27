@@ -28,8 +28,6 @@ Ce rendre les dossiers respectives front_end et back_end, puis exécuter pour ch
  
  ![Screenshot](produit_1.png)
  
-- ategories
- 
- ![Screenshot](screenshot.png)
- 
+- Categories
+  
  ![Screenshot](categories.png)
