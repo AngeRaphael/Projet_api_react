@@ -24,4 +24,12 @@ Ce rendre les dossiers respectives front_end et back_end, puis exécuter pour ch
 4. RAYESS MAHMOUD
 
 ```
-
+- Produits
+ 
+ ![Screenshot](produit_1.png)
+ 
+- ategories
+ 
+ ![Screenshot](screenshot.png)
+ 
+ ![Screenshot](categories.png)
