@@ -1,4 +1,5 @@
 const mongoose = require("mongoose")
+const category = require("./category")
 
 const produitSchema = mongoose.Schema({
   _id : String,
@@ -8,8 +9,10 @@ const produitSchema = mongoose.Schema({
   nutriscore_grade : String,
   api_category : String,
   image_url : String,
-  category : String,
-  note : String
+  category : {type: mongoose.Schema.Types.ObjectId,ref:category},
+  note : String,
+  date:String
+
 })
 
 module.exports = mongoose.model("produit", produitSchema)

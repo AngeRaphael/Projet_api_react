@@ -17,7 +17,7 @@ app.use(bodyParser.json())
 
 
 /************************************** */
-/*            GESTION Produits         */
+/*            GESTION PRODUIT           */
 /************************************** */
 
 //Get liste produit : ok
@@ -47,7 +47,7 @@ app.get("/pagelisteproduit/:category", async function (req, res) {
 
 
 
-//Get produit à modifier 
+//Get produit à modifier :ok
 app.get("/pagemodifierproduit/:ean", async function (req, res) {
     const { ean } = req.params
     produitModel.find().then(Produit => res.json(Produit[0]))
@@ -57,7 +57,7 @@ app.get("/pagemodifierproduit/:ean", async function (req, res) {
 
 //Ajouter un produit : ok
 app.post("/ajoutproduit", async function (req, res) {
-    //const id_obj = req.params
+
     const { form_object } = req.body
 
     console.log("**************")
@@ -73,8 +73,10 @@ app.post("/ajoutproduit", async function (req, res) {
         nutriscore_grade: form_object.nutriscore_grade,
         image_url: form_object.image_url,
         category: form_object.category,
-        note: form_object.note
+        note: form_object.note,
+        date:form_object.date
     })
+
     res.status(201).json({ id: datas["_id"] })
 })
 
@@ -103,7 +105,7 @@ app.put("/modifierproduit", async function(req,res){
 })
 
 
-// Supprimer un produit
+// Supprimer un produit :ok
 
 app.delete("/produit/:ean", async function (req, res) {
 
@@ -129,7 +131,7 @@ app.delete("/produit/:ean", async function (req, res) {
 /************************************** */
 
 
-// Créer une catégorie
+// Créer une catégorie :ok
 app.post("/category", async function (req, res) {
     const { name } = req.body.form_object
     const datas = await categoryModel.create({
@@ -139,7 +141,7 @@ app.post("/category", async function (req, res) {
 })
 
 
-// Afficher la liste Catégorie
+// Afficher la liste Catégorie : ok
 app.get("/category/list", async function (req, res) {
     categoryModel.find({}, function (err, categories) {
         res.status(200).json(categories)
@@ -148,7 +150,7 @@ app.get("/category/list", async function (req, res) {
 
 
 
-// Supprimer un produit
+// Supprimer un categorie : ok
 
 app.delete("/categorie/:name", async function (req, res) {
 
@@ -167,13 +169,15 @@ app.delete("/categorie/:name", async function (req, res) {
 
 })
 
+
+// Modifier catégories : ok
+
 app.put("/modifiercategory", async function(req,res){
     
     const form_object = req.body
 
     console.log(form_object)
 
-     //update object
      await categoryModel.updateOne({ _id: form_object._id }, { 
        
         _id: form_object._id,

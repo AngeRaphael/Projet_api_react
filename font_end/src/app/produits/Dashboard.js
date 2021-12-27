@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Doughnut } from 'react-chartjs-2';
 import Slider from "react-slick";
-import { TodoListComponent } from '../apps/TodoList'
 import { VectorMap } from "react-jvectormap"
 
 import axios from 'axios'
@@ -43,6 +42,8 @@ const Dashboard = () => {
   const [produitsearch, setProduitsearch] = useState('');
   const [categoriesearch, setCategoriesearch] = useState('');
 
+/*   const [cat, setCat] = useState([]);
+ */
 
   //Liste des produit via la BD
 
@@ -180,8 +181,22 @@ const Dashboard = () => {
 
   const displayPics = () => {
 
+    let cat =''
+
     return data.map(datas => {
 
+      console.log(datas)
+
+      categorie.map((item) =>{
+
+        if(item._id === datas.category){
+
+          cat = item.name
+
+        }
+      }
+              
+      )
       return (
         <div className="col-2">
           <img width={150} height={200} style={{ marginRight: 20, marginBottom: 20 }} src={datas.image_url} alt="image produit" />
@@ -189,7 +204,7 @@ const Dashboard = () => {
             <span style={{ color: 'orange' }}> {datas.brands} </span> <br /><br />
             Nom :<span style={{ color: 'orange' }}>  {(datas.product_name).split(" ")[0] + ' ' + [(datas.product_name).split(" ")[1] ? (datas.product_name).split(" ")[1] : '']}  </span> <br />
             Nutrigrade : <span className="text-uppercase" style={{ color: 'red' }}> {datas.nutriscore_grade} </span><br />
-            Catégorie : <span className="text-uppercase" style={{ color: 'red' }}> {datas.category} </span><br />
+            Catégorie : <span className="text-uppercase" style={{ color: 'red' }}> {cat} </span><br />
             Note : <span className="text-uppercase" style={{ color: 'red' }}> {datas.note} </span><br />
             Code Barre : <span className="text-uppercase" style={{ color: 'red' }}> {datas.ean} </span><br />
             <span style={{ color: 'grey' }}> {datas.date ? `Date : ${datas.date}` : ''} </span>
@@ -234,7 +249,7 @@ const Dashboard = () => {
       console.log(datas)
 
       return (
-        <option value={datas.name}>{datas.name}</option>
+        <option value={datas._id}>{datas.name}</option>
       )
 
     }

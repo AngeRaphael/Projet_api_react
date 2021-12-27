@@ -6,6 +6,7 @@ import axios from 'axios'
 import Scanner from './Scanner'
 import { Fab, TextareaAutosize, Paper } from '@material-ui/core'
 import { ArrowBack } from '@material-ui/icons'
+import moment from 'moment';
 
 
 //737628064502
@@ -17,7 +18,8 @@ let form_object = {
   nutriscore_grade: String,
   image_url: String,
   category: String,
-  note: String
+  note: String,
+  date: String
 }
 
 const Navbar = () => {
@@ -119,7 +121,7 @@ const Navbar = () => {
       console.log(datas)
 
       return (
-        <option value={datas.name}>{datas.name}</option>
+        <option value={datas._id}>{datas.name}</option>
       )
 
     }
@@ -137,7 +139,7 @@ const Navbar = () => {
     form_object.brands =  data.brands
     form_object.nutriscore_grade = data.nutriscore_grade
     form_object.image_url =  data.image_url
-
+    form_object.date = moment(new Date()).format("DD-MM-YYYY")
 
      let url =`http://localhost:3010/ajoutproduit`
     axios.post(url,{form_object}) 
@@ -255,8 +257,8 @@ const Navbar = () => {
                 onChange={(e) => { setCode(e.target.value) }}
                 style={{ width: 380, marginRight: 52 }} className="form-control text-white" placeholder="code produit via API" />
               <span style={{ marginRight: 10 }}> <button type="button" onClick={() => getModal()} className="btn btn-primary btn-fw">Recherche</button></span>
-              <span style={{ marginRight: 10 }}> <button type="button" onClick={() => codeBar()} className="btn btn-danger btn-fw">scan code</button></span>
-
+{/*               <span style={{ marginRight: 10 }}> <button type="button" onClick={() => codeBar()} className="btn btn-danger btn-fw">scan code</button></span>
+ */}
             </form>
           </li>
         </ul>
